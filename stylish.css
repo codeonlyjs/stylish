@@ -1,0 +1,623 @@
+*, *::before, *::after 
+{
+    box-sizing: border-box;
+}
+
+:root
+{
+    --font-family: sans-serif;
+    --color-scheme: dark;
+
+    --info-color: #3498db;
+    --warning-color: #f39c12;
+    --danger-color: #e74c3c;
+    --contrast-color: white;
+    --class-text-color: inherit; 
+    --class-back-color: var(--button-color); 
+    --class-fore-color: var(--contrast-color); 
+    --class-accent-color: var(--accent-color);
+    --gridline-color: rgb(from var(--fore-color) r g b / 20%);
+    --disabled-color: color-mix(in srgb, #808080, var(--back-color) 30%);
+    --input-back-color: color-mix(in srgb, #808080, var(--back-color) 85%);
+
+    color-scheme: var(--color-scheme);
+    color: var(--fore-color);
+
+    font-family: var(--font-family);
+    font-size: 1rem;
+    line-height: 1.2;
+}
+
+/* These styles are used when html class set to "dark" or "light" */
+:root.dark
+{
+    --color-scheme: dark;
+    --fore-color: white;
+    --back-color: black;
+    --button-color: #444;
+    --accent-color: #7160E8;
+    --success-color: #00bc8c;
+    --body-back-color: #1e1e1e;
+    --link-color: #00bc8c;
+}
+
+:root.light
+{
+    --color-scheme: light;
+    --fore-color: black;
+    --back-color: white;
+    --button-color: #95a5a6;
+    --accent-color: #7160E8;
+    --success-color: #18bc9c;
+    --body-back-color: white;
+    --link-color: #18bc9c;
+}
+
+/* These styles are used when html class not set */
+@media (prefers-color-scheme: dark)
+{
+    :root
+    {
+        --color-scheme: dark;
+        --fore-color: white;
+        --back-color: black;
+        --button-color: #444;
+        --accent-color: #375a7f;
+        --success-color: #00bc8c;
+        --body-back-color: #1e1e1e;
+        --link-color: #00bc8c;
+    }
+}
+@media (prefers-color-scheme: light)
+{
+    :root
+    {
+        --color-scheme: light;
+        --fore-color: black;
+        --back-color: white;
+        --button-color: #95a5a6;
+        --accent-color: #2c3e50;
+        --success-color: #18bc9c;
+        --body-back-color: white;
+        --link-color: #18bc9c;
+    }
+}
+
+body
+{
+    background-color: var(--body-back-color);
+}
+
+.accent
+{ 
+    --class-text-color: var(--accent-color); 
+    --class-back-color: var(--accent-color); 
+    --class-fore-color: var(--contrast-color); 
+    --class-accent-color: var(--accent-color); 
+}
+.success 
+{ 
+    --class-text-color: var(--success-color); 
+    --class-back-color: var(--success-color); 
+    --class-fore-color: var(--contrast-color); 
+    --class-accent-color: var(--success-color); 
+}
+.info 
+{ 
+    --class-text-color: var(--info-color); 
+    --class-back-color: var(--info-color); 
+    --class-fore-color: var(--contrast-color); 
+    --class-accent-color: var(--info-color); 
+}
+.warning 
+{ 
+    --class-text-color: var(--warning-color); 
+    --class-back-color: var(--warning-color); 
+    --class-fore-color: var(--contrast-color); 
+    --class-accent-color: var(--warning-color); 
+}
+.danger 
+{ 
+    --class-text-color: var(--danger-color); 
+    --class-back-color: var(--danger-color); 
+    --class-fore-color: var(--contrast-color); 
+    --class-accent-color: var(--danger-color); 
+}
+
+p, span, h1, h2, h3, h4, h5, h6
+{ color: var(--class-text-color); }
+
+h1 { font-size: 2.5rem; }
+h2 { font-size: 2rem; }
+h3 { font-size: 1.75rem; }
+h4 { font-size: 1.5rem; }
+h5 { font-size: 1.25rem; }
+h6 { font-size: 1rem; }
+
+.muted { opacity: 0.5; }
+.left { text-align: left; }
+.center { text-align: center; }
+.right { text-align: right; }
+
+fieldset
+{
+    border: none;
+    padding: 0;
+}
+
+legend
+{
+    padding-inline-start: 0px;
+    padding-inline-end: 0px;
+    padding-bottom: 10px;
+    padding-top: 20px;
+    font-weight: bold;
+}
+
+a
+{
+    --link-class-text-color: var(--class-text-color, var(--link-color));
+    color: var(--link-class-text-color);
+    text-decoration: none;
+
+    &:hover
+    {
+        text-decoration: underline;
+        color: rgb(from var(--link-class-text-color) r g b / 80%);
+    }
+}
+
+input, button
+{
+    font-family: var(--font-family);
+    font-size: 1rem;
+}
+
+button, 
+input[type=button],
+a.button,
+input[type="file"]::file-selector-button
+{
+    display:inline-block;
+    text-decoration: none;
+    background-color: var(--class-back-color);
+    color: var(--class-fore-color);
+    padding: .575rem .75rem;
+    border-width: 0;
+    border-radius: 5px;
+    border-style: solid;
+    font-size: 1rem;
+    line-height: 1rem;
+    white-space: nowrap;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+
+    &:hover:not(:disabled)
+    {
+        background-color: rgb(from var(--class-back-color) r g b / 80%);
+    }
+
+    &:active:not(:disabled)
+    {
+        background-color: rgb(from var(--class-back-color) r g b / 60%);
+    }    
+
+    &:focus-visible
+    {
+        outline: none;
+        box-shadow: 0 0 0 0.20rem rgb(from var(--class-back-color) r g b / 50%);
+    }
+
+    &:disabled
+    {
+        opacity: 0.5;
+    }
+
+    &.subtle:not(:focus-visible):not(:hover)
+    {
+        background: none;
+        color: var(--fore-color);
+    }
+
+    &.dropdown
+    {
+        &::after 
+        { 
+            content:'';
+            display: inline-block;
+            margin-left: 0.25em;
+            vertical-align: .1em;
+            border-top: 0.3em solid;
+            border-right: 0.3em solid transparent;
+            border-bottom: 0;
+            border-left: 0.3em solid transparent;        
+        }
+    }
+
+    /* <button class="dropdown standalone">&nbsp;</button> */
+    &.dropdown.standalone
+    {
+        &::after 
+        { 
+            margin-left: 0;
+            transform: translateX(-0.15rem);
+        }
+    }
+
+    &.small
+    {
+        font-size: 0.75rem;
+        padding: .24rem .56rem;
+        border-radius: 3px;
+    }
+
+    &.large
+    {
+        font-size: 1.2rem;
+        padding: .7rem .9rem;
+        border-radius: 6px;
+    }
+
+}
+
+/* .button classed radio and checkbox, typically used inside a .control-group */
+input.button[type='radio'],
+input.button[type='checkbox']
+{
+    position: absolute;
+    clip: rect(0, 0, 0, 0);
+    pointer-events: none;
+    & + label
+    {
+        margin-right: 0;
+        display:inline-block;
+        background-color: transparent;
+        color: var(--fore-color);
+        border-radius: 5px;
+        border-width: 1px;
+        border-color: var(--class-back-color);
+        padding-top: calc(0.575rem - 1px);
+        padding-bottom: calc(0.575rem - 1px);
+        padding-left: calc(0.75rem - 1px);
+        padding-right: calc(0.75rem - 1px);
+        border-style: solid;
+        font-size: 1rem;
+        line-height: 1rem;
+        white-space: nowrap;
+
+        &:hover
+        {
+            background-color: rgb(from var(--class-back-color) r g b / 30%);
+        }
+    }
+    & + label.subtle
+    {
+        padding: .575rem .75rem;
+        border: none;
+
+        &:hover
+        {
+            background-color: rgb(from var(--class-fore-color) r g b / 10%);
+        }
+    }
+    &:checked
+    {
+        & + label
+        {
+            background-color: var(--class-back-color);
+            color: var(--class-fore-color);
+
+            &:hover
+            {
+                background-color: rgb(from var(--class-back-color) r g b / 80%);
+            }
+        }
+
+    }
+    &:active
+    {
+        & + label
+        {
+            &:hover
+            {
+                background-color: rgb(from var(--class-back-color) r g b / 20%);
+            }
+        }
+
+    }
+    &:active:checked
+    {
+        & + label
+        {
+            &:hover
+            {
+                background-color: rgb(from var(--class-back-color) r g b / 40%);
+            }
+        }
+    }
+    &:focus-visible 
+    {
+        & + label
+        {
+            outline: none;
+            box-shadow: 0 0 0 0.25rem rgb(from var(--class-back-color) r g b / 50%);
+        }
+    }
+}
+
+
+input[type="file"]::file-selector-button:hover
+{
+    background-color: rgb(from var(--class-back-color) r g b / 80%);
+}
+input[type="file"]::file-selector-button:active
+{
+    background-color: rgb(from var(--class-back-color) r g b / 60%);
+}    
+
+
+/* Standard checkbox/radio button  (common)*/
+input[type="checkbox"],
+input[type="radio"]
+{
+    appearance: none;
+    outline: none;
+    display: inline-block;
+    height: 1rem;
+    width: 1rem;
+    position: relative;
+    margin: 0;
+    cursor: pointer;
+    border: 1px solid var(--fore-color);
+    background: var(--fore-color);
+    transform: translateY(1px);
+    margin-right: 5px;
+    transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+
+    &:checked
+    {
+        background-color: var(--class-accent-color);
+        border-color: var(--class-accent-color);
+    }
+
+    &:disabled
+    {
+        background-color: var(--disabled-color);
+        border-color: var(--disabled-color);
+    }
+
+    & + label
+    {
+        margin-right: 1rem;     /* A bit of space to the right for when stacked horizontally */
+        padding-top:.05em;      /* Make label vertically taller so easier to click */
+        padding-bottom:.05rem;
+    }
+
+    &:disabled + label
+    {
+        color: var(--disabled-color);
+    }
+
+    &:focus-visible + label
+    {
+        outline: solid 0.25rem rgb(from var(--fore-color) r g b / 50%);
+        outline-offset: 1px;
+        border-radius: 2px;
+    }
+
+}
+
+/* Checkbox */
+input[type="checkbox"]
+{
+    border-radius: 3px;
+    &:checked
+    {
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='m6 10 3 3 6-6'/%3e%3c/svg%3e");
+    }
+}
+
+/* Radio Button */
+input[type="radio"]
+{
+    border-radius: 10px;
+    &:checked
+    {
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='2' fill='%23fff'/%3e%3c/svg%3e");
+    }
+}
+
+/* Switch Style Checkbox */
+input.switch[type="checkbox"]
+{
+    width:30px;
+    border-radius:10px;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='rgba%280, 0, 0, 0.25%29'/%3e%3c/svg%3e");
+    background-position: left center;
+    background-repeat: no-repeat;
+    transition: background-position 0.15s ease-in-out;
+
+    &:checked
+    {
+        background-position: right center;
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23fff'/%3e%3c/svg%3e");
+    }
+    &:disabled
+    {
+        background-image: none;
+    }
+}
+
+
+
+hr
+{
+    border-color: var(--gridline-color);
+}
+
+.spinner
+{
+    display:inline-block;
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 50%;
+    border-width: 2px;
+    border-color: var(--class-text-color);
+    border-style: solid;
+    border-top-color: transparent;
+    animation: spinner .75s linear infinite;
+
+    &.xsmall
+    {
+        width: 0.75rem;
+        height: 0.75rem;
+        border-width: 2px;
+    }
+
+    &.small
+    {
+        width: 1rem;
+        height: 1rem;
+        border-width: 2px;
+    }
+
+    &.large
+    {
+        width: 2.5rem;
+        height: 2.5rem;
+        border-width: 3.5px;
+    }
+
+    &.xlarge
+    {
+        width: 4rem;
+        height: 4rem;
+        border-width: 5.3px;
+    }
+}
+
+@keyframes spinner 
+{
+    to { transform: rotate(360deg); }
+}
+
+span.pill
+{
+    background-color: var(--class-back-color);
+    color: var(--class-fore-color);
+    display:inline-block;
+    padding: .15rem .65rem;
+    border-radius: 1rem;
+    font-size: .75em;
+    font-weight: 700;
+}
+
+input[type=date],
+input[type=datedatetime-local],
+input[type=email],
+input[type=month],
+input[type=number],
+input[type=password],
+input[type=search],
+input[type=tel],
+input[type=text],
+input[type=time],
+input[type=url],
+input[type=week],
+input[type=file],
+textarea
+{
+    padding: .575rem .75rem;
+    background-color: var(--input-back-color);
+    color: var(--fore-color);
+    border-width: 1px;
+    border-radius: 5px;
+    border-style: solid;
+    border-color: var(--class-back-color);
+    font-family: var(--font-family);
+    font-size: 1rem;
+    line-height: 1rem;
+    outline: none;
+    padding: .575rem .75rem;
+
+
+    &::selection 
+    {
+        background-color: var(--accent-color);
+        color: var(--class-fore-color);
+    }
+      
+    &:focus-visible:not(:disabled)
+    {
+        outline: none;
+        box-shadow: 0 0 0 0.25rem rgb(from var(--class-back-color) r g b / 50%);
+    }
+
+    &::placeholder
+    {
+        color: rgb(from var(--fore-color) r g b / 33%);
+    }
+    
+}
+
+input[type=file]
+{
+    padding: 0.3rem;
+}
+
+input[type=file]::file-selector-button
+{
+    padding: .275rem .45rem;
+}
+
+.control-group
+{
+    position: relative;
+    display: inline-flex;
+    align-items: baseline;
+
+    span
+    {
+        background-color: var(--class-back-color);
+        border-radius: 5px;
+        padding: .575rem .75rem;
+        border-top: 1px solid var(--class-back-color);
+        border-bottom: 1px solid var(--class-back-color);
+        color: var(--class-fore-color);
+    }
+
+    :not(:first-child),
+    label:not(:first-of-type),
+    input.button[type='radio'] + label:not(:first-of-type),
+    input.button[type='checkbox'] + label:not(:first-of-type)
+    {
+        border-top-left-radius: 0px;
+        border-bottom-left-radius: 0px;
+    }
+
+    :not(:last-child),
+    label:not(:last-of-type),
+    input.button[type='radio'] + label:not(:last-of-type),
+    input.button[type='checkbox'] + label:not(:last-of-type)
+    {
+        border-top-right-radius: 0px;
+        border-bottom-right-radius: 0px;
+    }
+
+    input[type=date],
+    input[type=datedatetime-local],
+    input[type=email],
+    input[type=month],
+    input[type=number],
+    input[type=password],
+    input[type=search],
+    input[type=tel],
+    input[type=text],
+    input[type=time],
+    input[type=url],
+    input[type=week]
+    {
+        margin: 0;
+    }
+
+}
+
