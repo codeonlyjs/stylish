@@ -1,0 +1,24 @@
+{
+  "name": "@toptensoftware/stylish",
+  "version": "1.0.2",
+  "description": "A stylish set of pure-CSS styles",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "pub": "npm publish --access public"
+  },
+  "author": "Topten Software",
+  "contributors": [
+    {
+      "name": "Brad Robinson",
+      "email": "contact@toptensoftware.com"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/toptensoftware/stylish.git"
+  },
+  "license": "Apache-2.0"
+}
+

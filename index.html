@@ -1,6 +1,6 @@
 <html class="dark">
 <head>
-    <link href="/stylish.css" type="text/css" rel="stylesheet" />
+    <link href="./stylish.css" type="text/css" rel="stylesheet" />
 </head>
 <body>
 
@@ -10,6 +10,38 @@
 
 <button id="toggle-theme">Toggle Theme</button>
 
+
+<h2>Dialog Frame</h2>
+
+<button id="showModal">Show Dialog</button>
+
+<script>
+    document.getElementById("showModal").addEventListener('click', () => {
+        document.getElementById("testDialog").showModal();
+    });
+</script>
+
+<dialog id="testDialog">
+    <form method="dialog">
+        <header>
+            <button class="close subtle accent" tabIndex="-1"></button>
+            <span class="title">Title</span>
+        </header>
+        <main style="width: 400px">
+        <p>
+        This is a dialog
+        </p>
+        <p>More text</p>
+        </main>
+        <footer>
+            <button class="accent">OK</button>
+            <button>Cancel</button>
+        </footer>
+    </form>
+</dialog>
+
+
+<h2>Text Styles</h2>
 <p>This is a paragraph</p>
 <p>This is colored text:
 <span class="accent">accent</span>
@@ -22,7 +54,65 @@
 <p>This is a <a href="#" class="warning">warning link</a>.</p>
 <p>This is some <span class="muted">muted text</span>.</p>
 
-<legend>Pills</legend>
+<h2>Buttons</h2>
+<p>Active:</p>
+<div>
+    <button>normal</button>
+    <button class="accent">accent</button>
+    <button class="success">success</button>
+    <button class="info">info</button>
+    <button class="warning">warning</button>
+    <button class="danger">danger</button>
+    <a href="#" class="button danger">Link</a>
+</div>
+
+<p>Disabled:</p>
+<div>
+    <button disabled>normal</button>
+    <button disabled class="accent">accent</button>
+    <button disabled class="success">success</button>
+    <button disabled class="info">info</button>
+    <button disabled class="warning">warning</button>
+    <button disabled class="danger">danger</button>
+</div>
+
+<p>Subtle:</p>
+<div>
+    <button class="subtle">normal</button>
+    <button class="subtle accent">accent</button>
+    <button class="subtle success">success</button>
+    <button class="subtle info">info</button>
+    <button class="subtle warning">warning</button>
+    <button class="subtle danger">danger</button>
+    <a href="#" class="subtle button danger">Link</a>
+</div>
+
+<p>With Drop Arrow:</p>
+<div>
+    <button class="dropdown">normal</button>
+    <button class="dropdown accent">accent</button>
+    <button class="dropdown success">success</button>
+    <button class="dropdown info">info</button>
+    <button class="dropdown warning">warning</button>
+    <button class="dropdown danger">danger</button>
+    <button class="dropdown standalone">&nbsp;</button>
+</div>
+
+<p>Sized:</p>
+<div>
+    <button class="small">small</button>
+    <button class="">medium</button>
+    <button class="large">large</button>
+    <button class="small dropdown">small</button>
+    <button class="dropdown">medium</button>
+    <button class="large dropdown">large</button>
+    <button class="small dropdown standalone">&nbsp;</button>
+    <button class="dropdown standalone">&nbsp;</button>
+    <button class="large dropdown standalone">&nbsp;</button>
+</div>
+
+
+<h2>Pills</h2>
 <div>
     <span class="pill">Normal</span>
     <span class="pill accent">Accent</span>
@@ -32,7 +122,7 @@
     <span class="pill danger">Danger</span>
 </div>
 
-<legend>Text Fields</legend>
+<h2>Text Fields</h2>
 <p>
 <input type="text" placeholder="Type Here">
 </p>
@@ -49,7 +139,7 @@
 <textarea>Text Area</textarea>
 </p>
 
-<legend>Control Groups</legend>
+<h2>Control Groups</h2>
 <p>
 <div class="control-group">
     <span>$</span>
@@ -66,7 +156,30 @@
 </div>
 </p>
 
-<legend>Radio Buttons (Grouped)</legend>
+<h2>Radio Buttons</h2>
+<p>Normal:</p>
+<div>
+    <div>
+        <label><input name="radio" type="radio">Radio 1</label>
+    </div>
+    <div>
+        <label><input name="radio" type="radio">Radio 2</label>
+    </div>
+    <div>
+        <label><input name="radio" type="radio" disabled>Radio 3</label>
+    </div> 
+</div>
+
+<p>Horizontal:</p>
+<div>
+    <div>
+        <label><input name="radio" type="radio">Radio 1</label>
+        <label><input name="radio" type="radio">Radio 2</label>
+        <label><input name="radio" type="radio" disabled>Radio 3</label>
+    </div> 
+</div>
+
+<p>Grouped Button Style:</p>
 <div class="control-group">
     <input type="radio" class="button" name="radgroup" id="radio1" checked="">
     <label for="radio1">Radio 1</label>
@@ -78,7 +191,7 @@
     <label for="radio3">Radio 3</label>
 </div>
 
-<legend>Radio Buttons (Ungrouped)</legend>
+<p>Ungrouped Button Style:</p>
 <div class="danger">
     <input type="radio" class="button" name="radgroup" id="radio4" checked="">
     <label for="radio4">Radio 1</label>
@@ -90,7 +203,47 @@
     <label for="radio6">Radio 3</label>
 </div>
 
-<legend>Checkbox Buttons (Grouped)</legend>
+<h2>Checkboxes</h2>
+<p>Normal:</p>
+<div>
+    <div>
+        <label><input type="checkbox">Normal Checkbox</label>
+    </div>
+
+    <div>
+        <label><input class="warning" type="checkbox">Colored Checkbox</label>
+    </div>
+
+    <div>
+        <label><input type="checkbox" disabled>Disabled Checkbox</label>
+    </div>
+</div>
+
+<p>Horizontal:</p>
+<div>
+    <div>
+        <label><input type="checkbox">Apples</label>
+        <label><input type="checkbox">Pears</label>
+        <label><input type="checkbox">Bananas</label>
+    </div>
+</div>
+
+<p>Switches:</p>
+<div>
+    <div>
+        <label><input class="switch" type="checkbox">Normal Switch</label>
+    </div>
+
+    <div>
+        <label><input class="switch danger" type="checkbox" checked>Colored Switch</label>
+    </div>
+
+    <div>
+        <label><input class="switch" type="checkbox" disabled>Disabled Switch</label>
+    </div>
+</div>
+
+<p>Grouped Button Style:</p>
 <div class="control-group accent">
     <input type="checkbox" class="button" id="checkbox1">
     <label for="checkbox1">Check 1</label>
@@ -102,7 +255,7 @@
     <label for="checkbox3">Check 3</label>
 </div>
 
-<legend>Checkbox Buttons (Ungrouped)</legend>
+<p>Ungrouped Button Style:</p>
 <div class="">
     <input type="checkbox" class="button" id="checkbox4">
     <label for="checkbox4">Check 1</label>
@@ -114,7 +267,7 @@
     <label for="checkbox6">Check 3</label>
 </div>
 
-<legend>Checkbox Buttons (Subtle)</legend>
+<p>Subtle Button Style:</p>
 <div class="">
     <input type="checkbox" class="button" id="checkbox7">
     <label class="subtle" for="checkbox7">Check 1</label>
@@ -128,100 +281,7 @@
 
 
 
-<legend>Buttons</legend>
-<div>
-    <button>normal</button>
-    <button class="accent">accent</button>
-    <button class="success">success</button>
-    <button class="info">info</button>
-    <button class="warning">warning</button>
-    <button class="danger">danger</button>
-    <a href="#" class="button danger">Link</a>
-</div>
-
-<legend>Disabled Buttons</legend>
-<div>
-    <button disabled>normal</button>
-    <button disabled class="accent">accent</button>
-    <button disabled class="success">success</button>
-    <button disabled class="info">info</button>
-    <button disabled class="warning">warning</button>
-    <button disabled class="danger">danger</button>
-</div>
-
-<legend>Subtle Buttons</legend>
-<div>
-    <button class="subtle">normal</button>
-    <button class="subtle accent">accent</button>
-    <button class="subtle success">success</button>
-    <button class="subtle info">info</button>
-    <button class="subtle warning">warning</button>
-    <button class="subtle danger">danger</button>
-    <a href="#" class="subtle button danger">Link</a>
-</div>
-
-<legend>Drop Buttons</legend>
-<div>
-    <button class="dropdown">normal</button>
-    <button class="dropdown accent">accent</button>
-    <button class="dropdown success">success</button>
-    <button class="dropdown info">info</button>
-    <button class="dropdown warning">warning</button>
-    <button class="dropdown danger">danger</button>
-    <button class="dropdown standalone">&nbsp;</button>
-</div>
-
-<legend>Sized Buttons</legend>
-<div>
-    <button class="small">small</button>
-    <button class="">medium</button>
-    <button class="large">large</button>
-    <button class="small dropdown">small</button>
-    <button class="dropdown">medium</button>
-    <button class="large dropdown">large</button>
-    <button class="small dropdown standalone">&nbsp;</button>
-    <button class="dropdown standalone">&nbsp;</button>
-    <button class="large dropdown standalone">&nbsp;</button>
-</div>
-
-<legend>Radio Buttons</legend>
-<div>
-    <label><input name="radio" type="radio">Radio 1</label>
-</div>
-<div>
-    <label><input name="radio" type="radio">Radio 2</label>
-</div>
-<div>
-    <label><input name="radio" type="radio" disabled>Radio 3</label>
-</div> 
-
-<legend>Checkboxes</legend>
-<div>
-    <label><input type="checkbox">Normal Checkbox</label>
-</div>
-
-<div>
-    <label><input class="warning" type="checkbox">Colored Checkbox</label>
-</div>
-
-<div>
-    <label><input type="checkbox" disabled>Disabled Checkbox</label>
-</div>
-
-<legend>Switches</legend>
-<div>
-    <label><input class="switch" type="checkbox">Normal Switch</label>
-</div>
-
-<div>
-    <label><input class="switch danger" type="checkbox" checked>Colored Switch</label>
-</div>
-
-<div>
-    <label><input class="switch" type="checkbox" disabled>Disabled Switch</label>
-</div>
-
-<legend>Spinners</legend>
+<h2>Spinners</h2>
 <div>
     <span class="spinner normal"></span>
     <span class="spinner accent"></span>
@@ -237,7 +297,6 @@
     <span class="spinner large accent"></span>
     <span class="spinner xlarge accent"></span>
 </div>
-
 
 
 <script>

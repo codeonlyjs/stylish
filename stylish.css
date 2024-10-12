@@ -16,6 +16,14 @@
     --class-back-color: var(--button-color); 
     --class-fore-color: var(--contrast-color); 
     --class-accent-color: var(--accent-color);
+    --link-color: var(--accent-color);
+    --focus-color: var(--fore-color);
+    /* Use this to blend accent color into focus color
+        --focus-color: color-mix(in hsl, 
+                hsl(from var(--accent-color) h s l), 
+                hsl(from var(--accent-color) h s var(--fore-color-l)) 100%
+            );
+    */
     --gridline-color: rgb(from var(--fore-color) r g b / 20%);
     --disabled-color: color-mix(in srgb, #808080, var(--back-color) 30%);
     --input-back-color: color-mix(in srgb, #808080, var(--back-color) 85%);
@@ -34,23 +42,24 @@
     --color-scheme: dark;
     --fore-color: white;
     --back-color: black;
+    --fore-color-l: 100;
+    --back-color-l: 0;
     --button-color: #444;
     --accent-color: #7160E8;
     --success-color: #00bc8c;
     --body-back-color: #1e1e1e;
-    --link-color: #00bc8c;
 }
-
 :root.light
 {
     --color-scheme: light;
     --fore-color: black;
     --back-color: white;
+    --fore-color-l: 0;
+    --back-color-l: 100;
     --button-color: #95a5a6;
     --accent-color: #7160E8;
     --success-color: #18bc9c;
     --body-back-color: white;
-    --link-color: #18bc9c;
 }
 
 /* These styles are used when html class not set */
@@ -61,11 +70,12 @@
         --color-scheme: dark;
         --fore-color: white;
         --back-color: black;
+        --fore-color-l: 100;
+        --back-color-l: 0;
         --button-color: #444;
         --accent-color: #375a7f;
         --success-color: #00bc8c;
         --body-back-color: #1e1e1e;
-        --link-color: #00bc8c;
     }
 }
 @media (prefers-color-scheme: light)
@@ -75,17 +85,23 @@
         --color-scheme: light;
         --fore-color: black;
         --back-color: white;
+        --fore-color-l: 0;
+        --back-color-l: 100;
         --button-color: #95a5a6;
         --accent-color: #2c3e50;
         --success-color: #18bc9c;
         --body-back-color: white;
-        --link-color: #18bc9c;
     }
 }
 
 body
 {
     background-color: var(--body-back-color);
+}
+
+svg
+{
+    fill: currentColor;
 }
 
 .accent
@@ -139,21 +155,6 @@ h6 { font-size: 1rem; }
 .center { text-align: center; }
 .right { text-align: right; }
 
-fieldset
-{
-    border: none;
-    padding: 0;
-}
-
-legend
-{
-    padding-inline-start: 0px;
-    padding-inline-end: 0px;
-    padding-bottom: 10px;
-    padding-top: 20px;
-    font-weight: bold;
-}
-
 a
 {
     --link-class-text-color: var(--class-text-color, var(--link-color));
@@ -163,7 +164,11 @@ a
     &:hover
     {
         text-decoration: underline;
-        color: rgb(from var(--link-class-text-color) r g b / 80%);
+        color: color-mix(in hsl, 
+                hsl(from var(--link-class-text-color) h s l), 
+                hsl(from var(--link-class-text-color) h s var(--fore-color-l)) 20%
+            );
+
     }
 }
 
@@ -174,8 +179,8 @@ input, button
 }
 
 button, 
-input[type=button],
 a.button,
+input[type=button],
 input[type="file"]::file-selector-button
 {
     display:inline-block;
@@ -184,7 +189,7 @@ input[type="file"]::file-selector-button
     color: var(--class-fore-color);
     padding: .575rem .75rem;
     border-width: 0;
-    border-radius: 5px;
+    border-radius: 0.3rem;
     border-style: solid;
     font-size: 1rem;
     line-height: 1rem;
@@ -204,7 +209,7 @@ input[type="file"]::file-selector-button
     &:focus-visible
     {
         outline: none;
-        box-shadow: 0 0 0 0.20rem rgb(from var(--class-back-color) r g b / 50%);
+        box-shadow: 0 0 0 0.20rem var(--focus-color);
     }
 
     &:disabled
@@ -247,19 +252,17 @@ input[type="file"]::file-selector-button
     {
         font-size: 0.75rem;
         padding: .24rem .56rem;
-        border-radius: 3px;
     }
 
     &.large
     {
         font-size: 1.2rem;
         padding: .7rem .9rem;
-        border-radius: 6px;
     }
 
 }
 
-/* .button classed radio and checkbox, typically used inside a .control-group */
+/* Radio buttons and Checkboxes styled to look like buttons */
 input.button[type='radio'],
 input.button[type='checkbox']
 {
@@ -272,7 +275,7 @@ input.button[type='checkbox']
         display:inline-block;
         background-color: transparent;
         color: var(--fore-color);
-        border-radius: 5px;
+        border-radius: 0.3rem;
         border-width: 1px;
         border-color: var(--class-back-color);
         padding-top: calc(0.575rem - 1px);
@@ -283,6 +286,7 @@ input.button[type='checkbox']
         font-size: 1rem;
         line-height: 1rem;
         white-space: nowrap;
+        transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 
         &:hover
         {
@@ -339,7 +343,7 @@ input.button[type='checkbox']
         & + label
         {
             outline: none;
-            box-shadow: 0 0 0 0.25rem rgb(from var(--class-back-color) r g b / 50%);
+            box-shadow: 0 0 0 0.20rem var(--focus-color);
         }
     }
 }
@@ -368,9 +372,9 @@ input[type="radio"]
     margin: 0;
     cursor: pointer;
     border: 1px solid var(--fore-color);
-    background: var(--fore-color);
-    transform: translateY(1px);
-    margin-right: 5px;
+    background: var(--input-back-color);
+    transform: translateY(0.1rem);
+    margin-right: 0.4rem;
     transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
 
     &:checked
@@ -379,17 +383,16 @@ input[type="radio"]
         border-color: var(--class-accent-color);
     }
 
+    &:focus-visible
+    {
+        outline: none;
+        box-shadow: 0 0 0 0.20rem var(--focus-color);
+    }
+
     &:disabled
     {
         background-color: var(--disabled-color);
         border-color: var(--disabled-color);
-    }
-
-    & + label
-    {
-        margin-right: 1rem;     /* A bit of space to the right for when stacked horizontally */
-        padding-top:.05em;      /* Make label vertically taller so easier to click */
-        padding-bottom:.05rem;
     }
 
     &:disabled + label
@@ -397,13 +400,16 @@ input[type="radio"]
         color: var(--disabled-color);
     }
 
-    &:focus-visible + label
-    {
-        outline: solid 0.25rem rgb(from var(--fore-color) r g b / 50%);
-        outline-offset: 1px;
-        border-radius: 2px;
-    }
+}
 
+label:has(input)
+{
+    margin-right: 0.75rem;     /* A bit of space to the right for when stacked horizontally */
+}
+
+label:has(input:disabled)
+{
+    color:var(--disabled-color);
 }
 
 /* Checkbox */
@@ -431,7 +437,7 @@ input.switch[type="checkbox"]
 {
     width:30px;
     border-radius:10px;
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='rgba%280, 0, 0, 0.25%29'/%3e%3c/svg%3e");
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23888'/%3e%3c/svg%3e");
     background-position: left center;
     background-repeat: no-repeat;
     transition: background-position 0.15s ease-in-out;
@@ -446,8 +452,6 @@ input.switch[type="checkbox"]
         background-image: none;
     }
 }
-
-
 
 hr
 {
@@ -538,6 +542,7 @@ textarea
     line-height: 1rem;
     outline: none;
     padding: .575rem .75rem;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 
 
     &::selection 
@@ -549,7 +554,7 @@ textarea
     &:focus-visible:not(:disabled)
     {
         outline: none;
-        box-shadow: 0 0 0 0.25rem rgb(from var(--class-back-color) r g b / 50%);
+        box-shadow: 0 0 0 0.20rem var(--focus-color);
     }
 
     &::placeholder
@@ -583,6 +588,7 @@ input[type=file]::file-selector-button
         border-top: 1px solid var(--class-back-color);
         border-bottom: 1px solid var(--class-back-color);
         color: var(--class-fore-color);
+        z-index: -1;
     }
 
     :not(:first-child),
@@ -618,6 +624,68 @@ input[type=file]::file-selector-button
     {
         margin: 0;
     }
-
 }
 
+
+
+dialog
+{
+    all: revert;
+    padding: 0;
+    border-radius: 10px;
+    border-color: var(--accent-color);
+    form
+    {
+        all: revert;
+        margin: 0;
+    }
+    header
+    {
+        all: revert;
+        display: flex;
+        align-items: center;
+        border-bottom: 1px solid var(--gridline-color);
+
+        button.close
+        {
+            padding: 0.2rem;
+            margin: 0.2rem;
+            border-radius: 50%;
+            width: 2rem;
+            height: 2rem;
+            &::before
+            {
+                content: "✖";
+                /* -- back button style --
+                content: "➜";
+                display: inline-block;
+                transform: rotate(180deg);   
+                */
+            }
+        }
+
+        .title
+        {
+            font-weight: bold;
+        }
+    }
+    main
+    {
+        all: revert;
+        margin: 10px;
+    }
+    footer
+    {
+        all: revert;
+        display: flex;
+        gap: 10px;
+        padding: 10px;
+        justify-content: end;
+        border-top: 1px solid var(--gridline-color);
+    }
+    &::backdrop 
+    {
+        all: revert;
+        background-color: rgba(0, 0, 0, 0.75);
+    }
+}
