@@ -5,12 +5,37 @@
 
 :root
 {
+    /* dark colors */
+    --dark-fore-color: white;
+    --dark-back-color: black;
+    --dark-button-color: #444;
+    --dark-accent-color: #7160E8;
+    --dark-success-color: #00bc8c;
+    --dark-info-color: #3498db;
+    --dark-warning-color: #f39c12;
+    --dark-danger-color: #e74c3c;
+    --dark-body-back-color: #1e1e1e;
+
+    /* light colors */
+    --light-fore-color: black;
+    --light-back-color: white;
+    --light-button-color: #444;
+    --light-accent-color: #7160E8;
+    --light-success-color: #18bc9c;
+    --light-info-color: #3498db;
+    --light-warning-color: #f39c12;
+    --light-danger-color: #e74c3c;
+    --light-body-back-color: white;
+
+    --dark-fore-color-l: 100;
+    --dark-back-color-l: 0;
+    --light-fore-color-l: 0;
+    --light-back-color-l: 100;
+
+
     --font-family: sans-serif;
     --color-scheme: dark;
 
-    --info-color: #3498db;
-    --warning-color: #f39c12;
-    --danger-color: #e74c3c;
     --contrast-color: white;
     --class-text-color: inherit; 
     --class-back-color: var(--button-color); 
@@ -47,26 +72,32 @@
 :root.dark
 {
     --color-scheme: dark;
-    --fore-color: white;
-    --back-color: black;
     --fore-color-l: 100;
     --back-color-l: 0;
-    --button-color: #444;
-    --accent-color: #7160E8;
-    --success-color: #00bc8c;
-    --body-back-color: #1e1e1e;
+    --fore-color: var(--dark-fore-color);
+    --back-color: var(--dark-back-color);
+    --button-color: var(--dark-button-color);
+    --accent-color: var(--dark-accent-color);
+    --info-color: var(--dark-info-color);
+    --warning-color: var(--dark-warning-color);
+    --danger-color: var(--dark-danger-color);
+    --success-color: var(--dark-success-color);
+    --body-back-color: var(--dark-body-back-color);
 }
 :root.light
 {
     --color-scheme: light;
-    --fore-color: black;
-    --back-color: white;
     --fore-color-l: 0;
     --back-color-l: 100;
-    --button-color: #444;
-    --accent-color: #7160E8;
-    --success-color: #18bc9c;
-    --body-back-color: white;
+    --fore-color: var(--light-fore-color);
+    --back-color: var(--light-back-color);
+    --button-color: var(--light-button-color);
+    --accent-color: var(--light-accent-color);
+    --info-color: var(--light-info-color);
+    --warning-color: var(--light-warning-color);
+    --danger-color: var(--light-danger-color);
+    --success-color: var(--light-success-color);
+    --body-back-color: var(--light-body-back-color);
 }
 
 /* These styles are used when html class not set */
@@ -75,14 +106,17 @@
     :root
     {
         --color-scheme: dark;
-        --fore-color: white;
-        --back-color: black;
         --fore-color-l: 100;
         --back-color-l: 0;
-        --button-color: #444;
-        --accent-color: #7160E8;
-        --success-color: #00bc8c;
-        --body-back-color: #1e1e1e;
+        --fore-color: var(--dark-fore-color);
+        --back-color: var(--dark-back-color);
+        --button-color: var(--dark-button-color);
+        --accent-color: var(--dark-accent-color);
+        --info-color: var(--dark-info-color);
+        --warning-color: var(--dark-warning-color);
+        --danger-color: var(--dark-danger-color);
+        --success-color: var(--dark-success-color);
+        --body-back-color: var(--dark-body-back-color);
     }
 }
 @media (prefers-color-scheme: light)
@@ -90,14 +124,17 @@
     :root
     {
         --color-scheme: light;
-        --fore-color: black;
-        --back-color: white;
         --fore-color-l: 0;
         --back-color-l: 100;
-        --button-color: #444;
-        --accent-color: #2c3e50;
-        --success-color: #18bc9c;
-        --body-back-color: white;
+        --fore-color: var(--light-fore-color);
+        --back-color: var(--light-back-color);
+        --button-color: var(--light-button-color);
+        --accent-color: var(--light-accent-color);
+        --info-color: var(--dark-info-color);
+        --warning-color: var(--dark-warning-color);
+        --danger-color: var(--dark-danger-color);
+        --success-color: var(--light-success-color);
+        --body-back-color: var(--light-body-back-color);
     }
 }
 

@@ -1,7 +1,7 @@
 {
   "name": "@toptensoftware/stylish",
   "version": "1.0.2",
-  "description": "A stylish set of pure-CSS styles",
+  "description": "A nice, simple, theme aware set of CSS styles",
   "main": "index.js",
   "type": "module",
   "scripts": {
