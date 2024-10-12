@@ -24,6 +24,13 @@
                 hsl(from var(--accent-color) h s var(--fore-color-l)) 100%
             );
     */
+    /*
+    --code-color: color-mix(in hsl, 
+            hsl(from var(--accent-color) h s l), 
+            hsl(from var(--accent-color) h s var(--fore-color-l)) 30%
+        );
+        */
+    --code-color: var(--accent-color);
     --gridline-color: rgb(from var(--fore-color) r g b / 20%);
     --disabled-color: color-mix(in srgb, #808080, var(--back-color) 30%);
     --input-back-color: color-mix(in srgb, #808080, var(--back-color) 85%);
@@ -32,7 +39,7 @@
     color: var(--fore-color);
 
     font-family: var(--font-family);
-    font-size: 1rem;
+    font-size: 1.2rem;
     line-height: 1.2;
 }
 
@@ -142,6 +149,11 @@ svg
 
 p, span, h1, h2, h3, h4, h5, h6
 { color: var(--class-text-color); }
+
+code
+{
+    color: var(--code-color);
+}
 
 h1 { font-size: 2.5rem; }
 h2 { font-size: 2rem; }

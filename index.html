@@ -1,60 +1,98 @@
 <html class="dark">
 <head>
     <link href="./stylish.css" type="text/css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/14.1.2/marked.min.js"></script>
+	<meta name="viewport" content="initial-scale=1">
+    <style>
+    :root
+    {
+    }
+    main
+    {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+    </style>
 </head>
 <body>
 
-<h1>Stylish!</h1>
+<main>
 
-<hr />
+<pre>
+# Stylish
 
-<button id="toggle-theme">Toggle Theme</button>
+Welcome to Stylish, a nice, simple, CSS framework for styling.
 
+Stylish provides visual styling only, no script behaviours and no layout 
+functionality - this is intentional.
 
-<h2>Dialog Frame</h2>
+So, what does Stylish do?  Well let's take a walk through.
 
-<button id="showModal">Show Dialog</button>
+## Auto, Light and Dark Themes
+
+Stylish supports light and dark themes and support for automatically
+switching.  By default, the theme will match the users preference.
+
+For force using the dark or light theme, add the `dark` or `light`
+class to the root `&lt;html&gt;` element of the document.
+</pre>
+
+<div class="sample">
+<button id="toggle-theme" onclick="toggleTheme()">Toggle Theme</button>
 
 <script>
-    document.getElementById("showModal").addEventListener('click', () => {
-        document.getElementById("testDialog").showModal();
-    });
+function toggleTheme()
+{
+    let cl = document.documentElement.classList;
+    let wasDark = cl.contains("dark");
+    cl.remove(wasDark ? "dark" : "light");
+    cl.add(wasDark ? "light" : "dark");
+};
 </script>
+</div>
 
-<dialog id="testDialog">
-    <form method="dialog">
-        <header>
-            <button class="close subtle accent" tabIndex="-1"></button>
-            <span class="title">Title</span>
-        </header>
-        <main style="width: 400px">
-        <p>
-        This is a dialog
-        </p>
-        <p>More text</p>
-        </main>
-        <footer>
-            <button class="accent">OK</button>
-            <button>Cancel</button>
-        </footer>
-    </form>
-</dialog>
+<pre>
+## Colors
 
+Stylish uses several classes to change the primary color of items:
 
-<h2>Text Styles</h2>
-<p>This is a paragraph</p>
-<p>This is colored text:
+* `accent`
+* `success`
+* `info`
+* `warning`
+* `danger`
+
+These class can be applied to most elements to change the primary
+color used by that item.
+
+## Text Styles
+</pre>
+
+<div class="sample">
+<p>A normal paragraph</p>
+<p>Colored text:
 <span class="accent">accent</span>
 <span class="success">success</span>
 <span class="info">info</span>
 <span class="warning">warning</span>
 <span class="danger">danger</span>
 </p>
-<p>This is a link to <a href="#">toptensoftware.com</a>.</p>
-<p>This is a <a href="#" class="warning">warning link</a>.</p>
-<p>This is some <span class="muted">muted text</span>.</p>
+<p>A link <a href="#">toptensoftware.com</a>.</p>
+<p>A link with warning color <a href="#" class="warning">warning link</a>.</p>
+<p>The <code>muted</code> class can be used to <span class="muted">dim text</span>.</p>
+</div>
 
-<h2>Buttons</h2>
+<pre>
+## Buttons
+
+Buttons support the the following classes:
+
+* color classes as shown above
+* `subtle` to remove the background from a button until hovered
+* `dropdown` to add a drop down Arrow
+* `small` and `large` to change the button size
+</pre>
+
 <p>Active:</p>
 <div>
     <button>normal</button>
@@ -112,7 +150,12 @@
 </div>
 
 
-<h2>Pills</h2>
+<pre>
+## Pills
+
+Use the `pill` class on a `&lt;span&gt;` to make a pill:
+</pre>
+
 <div>
     <span class="pill">Normal</span>
     <span class="pill accent">Accent</span>
@@ -122,7 +165,13 @@
     <span class="pill danger">Danger</span>
 </div>
 
-<h2>Text Fields</h2>
+<pre>
+## Text Fields
+
+Text fields are styled as follows.  Use the class Colors
+to re-color a the border.
+</pre>
+
 <p>
 <input type="text" placeholder="Type Here">
 </p>
@@ -139,7 +188,16 @@
 <textarea>Text Area</textarea>
 </p>
 
-<h2>Control Groups</h2>
+
+<pre>
+## Control Groups
+
+Control groups let you group several controls together into
+a single control.  Use `&lt;span&gt;` to put indicators
+around text fields, or see below for examples
+of grouping radio and checkbox buttons.
+</pre>
+
 <p>
 <div class="control-group">
     <span>$</span>
@@ -156,7 +214,19 @@
 </div>
 </p>
 
-<h2>Radio Buttons</h2>
+<pre>
+## Radio Buttons
+
+Radio buttons can be styled with color classes, or made to 
+look like buttons by adding the `button` class to the input 
+element.  
+
+Note: For button looking radio buttons the `&lt;label&gt;` 
+must not be wrapping the input - it must placed as immediately
+following sibling of the `&lt;input&gt;`.
+</pre>
+
+
 <p>Normal:</p>
 <div>
     <div>
@@ -203,7 +273,21 @@
     <label for="radio6">Radio 3</label>
 </div>
 
-<h2>Checkboxes</h2>
+<pre>
+## Checkboxes
+
+Radio buttons can be styled with color classes, or made to 
+look like buttons by adding the `button` class to the input 
+element.  
+
+Adding the `switch` class to a checkbox makes it appear as
+a horizontal sliding switching instead of a checkmark.
+
+Note: For button looking radio buttons the `&lt;label&gt;` 
+must not be wrapping the input - it must placed as immediately
+following sibling of the `&lt;input&gt;`.
+</pre>
+
 <p>Normal:</p>
 <div>
     <div>
@@ -279,9 +363,16 @@
     <label class="subtle" for="checkbox9">Check 3</label>
 </div>
 
+<pre>
+## Spinners
 
+To create a spinner just add the `spinner` class to an
+empty `&lt;span&gt;`.
 
-<h2>Spinners</h2>
+Use `xsmall`, `small`, `large` and `xlarge` classed to adjut
+the size of the spinner.
+</pre>
+
 <div>
     <span class="spinner normal"></span>
     <span class="spinner accent"></span>
@@ -298,15 +389,99 @@
     <span class="spinner xlarge accent"></span>
 </div>
 
+<pre>
+## Dialog Frames
+
+Dialogs should be constructed with the following layout:
+
+```
+dialog
+    form
+        header
+            button.close
+            span.title
+        main
+            (put your dialog content here)
+        footer
+            (put your OK, cancel buttons here)
+            
+```
+</pre>
+
+
+<button id="showModal">Show Dialog</button>
 
 <script>
-document.getElementById('toggle-theme').addEventListener('click', () => 
+    document.getElementById("showModal").addEventListener('click', () => {
+        document.getElementById("testDialog").showModal();
+    });
+</script>
+
+<dialog id="testDialog">
+    <form method="dialog">
+        <header>
+            <button class="close subtle accent" tabIndex="-1"></button>
+            <span class="title">Title</span>
+        </header>
+        <main style="width: 400px">
+        <p>
+        This is a dialog
+        </p>
+        <p>More text</p>
+        </main>
+        <footer>
+            <button class="accent">OK</button>
+            <button>Cancel</button>
+        </footer>
+    </form>
+</dialog>
+
+<pre>
+## Customization
+
+Most aspects of the theme can be adjusted with CSS variables applied
+to the root element of the document:
+
+* `--font-family` - the font family used by all text and controls
+* `--accent-color` - the main accent color for primary buttons, dialog frames, 
+    selected checkboxes and radio buttons
+* `--button-color` - color for normal (non-color classed buttons and adornments)
+* `--gridline-color` - color for grid lines and outlines
+* `--contrast-color` - the color of text in front of the other class colors
+* `--info-color` - color of the `info` color class
+* `--success-color` - color of the `success` color class
+* `--warning-color` - color of the `warning` color class
+* `--danger-color` - color of the `danger` color class
+* `--body-back-color` - color of the main document background
+* `--focus-color` - color for focus-visible outline highlights
+* `--link-color` - color for text links
+* `--code-color` - color for code text
+
+
+The following variables aren't meant to be adjusted but are useful if you
+need to style other elements:
+
+* `--fore-color` - white for dark theme, black for light theme
+* `--back-color` - black for dark theme, white for light Theme
+* `--fore-color-l` - fore color luminosity (useful for blending other colors towards)
+* `--class-text-color` - text color for the currently selected color class
+* `--class-back-color` - background color for currently selected color class
+* `--class-fore-color` - foreground color for currently selected color class
+* `--class-accent-color` - accent color for currently selected color class
+</pre>
+
+</main>
+
+<script>
+// Convert <pre> blocks with markdown
+
+for (let p of document.querySelectorAll('pre'))
 {
-    let cl = document.documentElement.classList;
-    let wasDark = cl.contains("dark");
-    cl.remove(wasDark ? "dark" : "light");
-    cl.add(wasDark ? "light" : "dark");
-});
+    let div = document.createElement("div");
+    div.innerHTML = marked.parse(p.innerText);
+    p.replaceWith(div);
+}
+
 </script>
 </body>
 </html>
