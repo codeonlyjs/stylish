@@ -1,4 +1,4 @@
-<html class="dark">
+<html>
 <head>
     <link href="./stylish.css" type="text/css" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/14.1.2/marked.min.js"></script>
@@ -38,15 +38,24 @@ class to the root `&lt;html&gt;` element of the document.
 </pre>
 
 <div class="sample">
-<button id="toggle-theme" onclick="toggleTheme()">Toggle Theme</button>
+<div class="control-group">
+    <input type="radio" class="button" name="theme" id="theme-auto" checked="" onclick="loadTheme('auto')">
+    <label for="theme-auto">Auto</label>
+
+    <input type="radio" class="button" name="theme" id="theme-dark" onclick="loadTheme('dark')">
+    <label for="theme-dark">Dark</label>
+
+    <input type="radio" class="button" name="theme" id="theme-light" onclick="loadTheme('light')">
+    <label for="theme-light">Light</label>
+</div>
 
 <script>
-function toggleTheme()
+function loadTheme(name)
 {
     let cl = document.documentElement.classList;
-    let wasDark = cl.contains("dark");
-    cl.remove(wasDark ? "dark" : "light");
-    cl.add(wasDark ? "light" : "dark");
+    cl.remove("dark", "light");
+    if (name != 'auto')
+        cl.add(name);
 };
 </script>
 </div>
