@@ -34,11 +34,26 @@
         }
     }
 
+    #viewCodeDialog
+    {
+        main
+        {
+            min-width: 400px;
+            padding: 0;
+            margin: 0;
+        }
+        pre
+        {
+            max-height: 400px;
+            padding: 20px;
+            margin: 0;
+            overflow: auto;
+        }
+    }
+
     #code
     {
-        max-height: 400px;
         padding: 0;
-        overflow: auto;
         font-size: smaller;
 
         .tag { color: #f92672; }
@@ -46,6 +61,19 @@
         .value { color: #e6db74; }
         .comment { color: #080; }
     }
+
+    .grid.demo
+    {
+        cell-row-gap: 5px;
+        cell-column-gap: 5px;
+        div
+        {
+            background-color: rgb(from var(--danger-color) r g b / 30%);
+            text-align: center;
+        }
+    }
+
+
 
     </style>
 </head>
@@ -60,7 +88,7 @@ Welcome to Stylish - a clean, simple, customizable, theme aware, appearance
 only stylesheet.
 
 Stylish provides visual appearance styling only, no script behaviours and no 
-layout functionality - this is intentional.
+layout functionality. This is intentional.
 
 In the following examples, click the &lt;/&gt; buttons on the right
 to view the underlying markup/script.
@@ -95,6 +123,7 @@ function loadTheme(name)
 };
 </script>
 </div>
+
 
 <pre class="markdown">
 ## Colors
@@ -493,10 +522,12 @@ function showTestDialog()
             <span class="title">Title</span>
         </header>
         <main style="width: 400px">
-        <p>
-        This is a dialog
-        </p>
-        <p>More text</p>
+        <div class="grid">
+            <label class="cell-1-4 cell-right">Email:</label>
+            <input class="cell-24-4" type="text" autofocus>
+            <label class="cell-1-4 cell-right">Password:</label>
+            <input class="cell-24-4" type="password">
+        </div>
         </main>
         <footer>
             <button class="accent">OK</button>
@@ -505,6 +536,80 @@ function showTestDialog()
     </form>
 </dialog>
 </div>
+
+<pre class="markdown">
+## Grid System
+
+Although Stylish is mostly about visual styling it also includes
+a simple cell-12 system.
+
+To use the grid system:
+
+1. Use the class `grid` on the container (usually a `&lt;div&gt;`)
+2. On the grid cells assign classes of the form `cell-N-M` where:
+    * N is the column number to place the item in.
+    * M is number of columns across the horizontal space.
+
+For example:
+
+* `cell-1-1` divides the horizontal space by 1, and uses the first column 
+  (ie: full width)
+* `cell-1-2` the first of two columns
+* `cell-2-2` the second of two columns
+* `cell-3-4` the third of four columns
+* etc...
+
+To span multiple columns, use two digits for `N` where the first is the
+first column number and the second is the last column number.  (eg:
+`cell-24-4` is columns 2,3 and 4 of a 4 column split).
+</pre>
+
+<div class="sample">
+<div class="grid demo" style="margin: 0 50px">
+    <div class="cell-1-1">1-1</div>
+
+    <div class="cell-1-2">1-2</div>
+    <div class="cell-2-2">2-2</div>
+
+    <div class="cell-1-3">1-3</div>
+    <div class="cell-2-3">2-3</div>
+    <div class="cell-3-3">3-3</div>
+
+    <div class="cell-1-3">1-3</div>
+    <div class="cell-23-3">23-3</div>
+
+    <div class="cell-12-3">12-3</div>
+    <div class="cell-3-3">3-3</div>
+
+    <div class="cell-1-4">1-4</div>
+    <div class="cell-2-4">2-4</div>
+    <div class="cell-3-4">3-4</div>
+    <div class="cell-4-4">4-4</div>
+
+    <div class="cell-1-4">1-4</div>
+    <div class="cell-23-4">23-4</div>
+    <div class="cell-4-4">4-4</div>
+
+    <div class="cell-1-4">1-4</div>
+    <div class="cell-24-4">24-4</div>
+
+    <div class="cell-13-4">13-4</div>
+    <div class="cell-4-4">4-4</div>
+
+    <div class="cell-1-6">1-6</div>
+    <div class="cell-2-6">2-6</div>
+    <div class="cell-3-6">3-6</div>
+    <div class="cell-4-6">4-6</div>
+    <div class="cell-5-6">5-6</div>
+    <div class="cell-6-6">6-6</div>
+
+    <div class="cell-1-6">1-6</div>
+    <div class="cell-23-6">23-6</div>
+    <div class="cell-45-6">45-6</div>
+    <div class="cell-6-6">6-6</div>
+</div>
+</div>
+
 
 <pre class="markdown">
 ## Customization
@@ -559,7 +664,7 @@ styling your own elements:
             <button class="close subtle accent" tabIndex="-1"></button>
             <span class="title">Title</span>
         </header>
-        <main style="min-width: 400px">
+        <main>
         <pre><code id="code"></code></pre>
         </main>
         <footer>
