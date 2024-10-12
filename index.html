@@ -12,29 +12,64 @@
         max-width: 800px;
         margin: 0 auto;
     }
+    div.sample
+    {
+        position: relative;
+    }
+    button.show-code-button
+    {
+        padding: 3px 10px;
+        position: absolute;
+        top: 0;
+        right: 0;
+        font-size: 10pt;
+        opacity: 40%;
+        &::after 
+        { 
+            content: "</>"; 
+        }
+        &:hover
+        {
+            opacity: 100%;
+        }
+    }
+
+    #code
+    {
+        max-height: 400px;
+        padding: 0;
+        overflow: auto;
+        font-size: smaller;
+
+        .tag { color: #f92672; }
+        .attr { color: #a6e22e; }
+        .value { color: #e6db74; }
+        .comment { color: #080; }
+    }
+
     </style>
 </head>
 <body>
 
 <main>
 
-<pre>
+<pre class="markdown">
 # Stylish
 
-Welcome to Stylish - a nice, simple, theme aware set of CSS styles.
+Welcome to Stylish - a clear, simple, customizable, theme aware stylesheet.
 
 Stylish provides visual styling only, no script behaviours and no layout 
 functionality - this is intentional.
 
-So, what does Stylish do?  Well let's take a walk through.
+In the following examples, click the &lt;/&gt; buttons on the right
+to view the underlying markup/script.
 
 ## Auto, Light and Dark Themes
 
-Stylish supports light and dark themes and support for automatically
-switching.  By default, the theme will match the users preference.
-
-For force using the dark or light theme, add the `dark` or `light`
-class to the root `&lt;html&gt;` element of the document.
+Stylish supports light and dark themes.  By default the mode is selected
+based on the user's preference, or you can force one or the other by
+adding the `dark` or `light` class to the root `&lt;html&gt;` element 
+of the document.
 </pre>
 
 <div class="sample">
@@ -60,7 +95,7 @@ function loadTheme(name)
 </script>
 </div>
 
-<pre>
+<pre class="markdown">
 ## Colors
 
 Stylish uses several classes to change the primary color of items:
@@ -70,9 +105,6 @@ Stylish uses several classes to change the primary color of items:
 * `info`
 * `warning`
 * `danger`
-
-These class can be applied to most elements to change the primary
-color used by that item.
 
 ## Text Styles
 </pre>
@@ -91,7 +123,7 @@ color used by that item.
 <p>The <code>muted</code> class can be used to <span class="muted">dim text</span>.</p>
 </div>
 
-<pre>
+<pre class="markdown">
 ## Buttons
 
 Buttons support the the following classes:
@@ -159,53 +191,52 @@ Buttons support the the following classes:
 </div>
 
 
-<pre>
+<pre class="markdown">
 ## Pills
 
-Use the `pill` class on a `&lt;span&gt;` to make a pill:
+Use the `pill` class on a `&lt;span&gt;` to make a pill.  The `small`
+and `large` classes adjust the pill size:
 </pre>
 
 <div class="sample">
+<p>
     <span class="pill">Normal</span>
     <span class="pill accent">Accent</span>
     <span class="pill success">Success</span>
     <span class="pill info">Info</span>
     <span class="pill warning">Warning</span>
     <span class="pill danger">Danger</span>
+</p>
+<p>
+    <span class="pill accent small">Small</span>
+    <span class="pill accent">Medium</span>
+    <span class="pill accent large">Large</span>
+</p>
 </div>
 
-<pre>
+<pre class="markdown">
 ## Text Fields
 
-Text fields are styled as follows.  Use the class Colors
-to re-color a the border.
+Use the color classes re-color a the border of most controls:
 </pre>
 
 <div class="sample">
-    <p>
-    <input type="text" placeholder="Type Here">
-    </p>
-    <p>
-    <input class="danger" type="text" placeholder="Type Here">
-    </p>
-    <p>
-    <input type="password" placeholder="Type Here">
-    </p>
-    <p>
-    <input type="file" placeholder="Type Here">
-    </p>
-    <p>
-    <textarea>Text Area</textarea>
-    </p>
+<p><input type="text" placeholder="Text Field"></p>
+<p><input class="danger" type="text" placeholder="'danger' class"></p>
+<p><input type="password" placeholder="Enter Password"></p>
+<p><input type="file" placeholder="Choose File"></p>
+<p><label><input type="color"> Pick a Color</label></p>
+<p><textarea style="width: 100%; height: 80px">Text Area</textarea></p>
 </div>
 
-<pre>
+<pre class="markdown">
 ## Control Groups
 
-Control groups let you group several controls together into
-a single control.  Use `&lt;span&gt;` to put indicators
-around text fields, or see below for examples
-of grouping radio and checkbox buttons.
+Control groups combine several controls together to appear as a single 
+multi-part control.  
+
+Use `&lt;span&gt;` to put indicators around text 
+fields, or see below for examples of grouping radio and checkbox buttons.
 </pre>
 
 <p>
@@ -228,7 +259,7 @@ of grouping radio and checkbox buttons.
 </div>
 </p>
 
-<pre>
+<pre class="markdown">
 ## Radio Buttons
 
 Radio buttons can be styled with color classes, or made to 
@@ -244,7 +275,7 @@ following sibling of the `&lt;input&gt;`.
 <p>Normal:</p>
 <div class="sample">
     <div>
-        <label><input name="radio" type="radio">Radio 1</label>
+        <label><input name="radio" type="radio" checked>Radio 1</label>
     </div>
     <div>
         <label><input name="radio" type="radio">Radio 2</label>
@@ -257,22 +288,22 @@ following sibling of the `&lt;input&gt;`.
 <p>Horizontal:</p>
 <div class="sample">
     <div>
-        <label><input name="radio" type="radio">Radio 1</label>
-        <label><input name="radio" type="radio">Radio 2</label>
-        <label><input name="radio" type="radio" disabled>Radio 3</label>
+        <label><input name="radio1" type="radio" checked>Radio 1</label>
+        <label><input name="radio1" type="radio">Radio 2</label>
+        <label><input name="radio1" type="radio" disabled>Radio 3</label>
     </div> 
 </div>
 
 <p>Grouped Button Style:</p>
 <div class="sample">
 <div class="control-group">
-    <input type="radio" class="button" name="radgroup" id="radio1" checked="">
+    <input type="radio" class="button" name="radio2" id="radio1" checked>
     <label for="radio1">Radio 1</label>
 
-    <input type="radio" class="button" name="radgroup" id="radio2">
+    <input type="radio" class="button" name="radio2" id="radio2">
     <label for="radio2">Radio 2</label>
 
-    <input type="radio" class="button" name="radgroup" id="radio3">
+    <input type="radio" class="button" name="radio2" id="radio3">
     <label for="radio3">Radio 3</label>
 </div>
 </div>
@@ -280,19 +311,19 @@ following sibling of the `&lt;input&gt;`.
 <p>Ungrouped Button Style:</p>
 <div class="sample">
 <div class="danger">
-    <input type="radio" class="button" name="radgroup" id="radio4" checked="">
+    <input type="radio" class="button" name="radio3" id="radio4" checked>
     <label for="radio4">Radio 1</label>
 
-    <input type="radio" class="button" name="radgroup" id="radio5">
+    <input type="radio" class="button" name="radio3" id="radio5">
     <label for="radio5">Radio 2</label>
 
-    <input type="radio" class="button" name="radgroup" id="radio6">
+    <input type="radio" class="button" name="radio3" id="radio6">
     <label for="radio6">Radio 3</label>
 </div>
 </div>
 
 
-<pre>
+<pre class="markdown">
 ## Checkboxes
 
 Radio buttons can be styled with color classes, or made to 
@@ -310,11 +341,15 @@ following sibling of the `&lt;input&gt;`.
 <p>Normal:</p>
 <div class="sample">
     <div>
-        <label><input type="checkbox">Normal Checkbox</label>
+        <label><input type="checkbox">Checkbox</label>
     </div>
 
     <div>
-        <label><input class="warning" type="checkbox">Colored Checkbox</label>
+        <label><input type="checkbox" checked>Checkbox</label>
+    </div>
+
+    <div>
+        <label><input class="warning" type="checkbox" checked>Colored Checkbox</label>
     </div>
 
     <div>
@@ -325,7 +360,7 @@ following sibling of the `&lt;input&gt;`.
 <p>Horizontal:</p>
 <div class="sample">
     <div>
-        <label><input type="checkbox">Apples</label>
+        <label><input type="checkbox" checked>Apples</label>
         <label><input type="checkbox">Pears</label>
         <label><input type="checkbox">Bananas</label>
     </div>
@@ -334,7 +369,11 @@ following sibling of the `&lt;input&gt;`.
 <p>Switches:</p>
 <div class="sample">
     <div>
-        <label><input class="switch" type="checkbox">Normal Switch</label>
+        <label><input class="switch" type="checkbox">Switch</label>
+    </div>
+
+    <div>
+        <label><input class="switch" type="checkbox" checked>Switch</label>
     </div>
 
     <div>
@@ -349,7 +388,7 @@ following sibling of the `&lt;input&gt;`.
 <p>Grouped Button Style:</p>
 <div class="sample">
 <div class="control-group accent">
-    <input type="checkbox" class="button" id="checkbox1">
+    <input type="checkbox" class="button" id="checkbox1" checked>
     <label for="checkbox1">Check 1</label>
 
     <input type="checkbox" class="button" id="checkbox2">
@@ -363,7 +402,7 @@ following sibling of the `&lt;input&gt;`.
 <p>Ungrouped Button Style:</p>
 <div class="sample">
 <div>
-    <input type="checkbox" class="button" id="checkbox4">
+    <input type="checkbox" class="button" id="checkbox4" checked>
     <label for="checkbox4">Check 1</label>
 
     <input type="checkbox" class="button" id="checkbox5">
@@ -377,7 +416,7 @@ following sibling of the `&lt;input&gt;`.
 <p>Subtle Button Style:</p>
 <div class="sample">
 <div class="">
-    <input type="checkbox" class="button" id="checkbox7">
+    <input type="checkbox" class="button" id="checkbox7" checked>
     <label class="subtle" for="checkbox7">Check 1</label>
 
     <input type="checkbox" class="button" id="checkbox8">
@@ -388,7 +427,7 @@ following sibling of the `&lt;input&gt;`.
 </div>
 </div>
 
-<pre>
+<pre class="markdown">
 ## Spinners
 
 To create a spinner just add the `spinner` class to an
@@ -416,7 +455,7 @@ the size of the spinner.
 </div>
 </div>
 
-<pre>
+<pre class="markdown">
 ## Dialog Frames
 
 Dialogs should be constructed with the following HTML structure:
@@ -437,12 +476,13 @@ dialog
 
 <div class="sample">
 
-<button id="showModal">Show Dialog</button>
+<button onclick="showTestDialog()">Show Dialog</button>
 
 <script>
-    document.getElementById("showModal").addEventListener('click', () => {
-        document.getElementById("testDialog").showModal();
-    });
+function showTestDialog()
+{
+    document.getElementById("testDialog").showModal();
+}
 </script>
 
 <dialog id="testDialog">
@@ -465,7 +505,7 @@ dialog
 </dialog>
 </div>
 
-<pre>
+<pre class="markdown">
 ## Customization
 
 Most aspects of the theme can be adjusted with CSS variables applied
@@ -511,17 +551,116 @@ styling your own elements:
 * `--class-accent-color` - accent color for currently selected color class
 </pre>
 
+
+<dialog id="viewCodeDialog">
+    <form method="dialog">
+        <header>
+            <button class="close subtle accent" tabIndex="-1"></button>
+            <span class="title">Title</span>
+        </header>
+        <main style="min-width: 400px">
+        <pre><code id="code"></code></pre>
+        </main>
+        <footer>
+            <button id="copy">Copy</button>
+            <button>Close</button>
+        </footer>
+    </form>
+</dialog>
+
 </main>
 
 <script>
-// Convert <pre> blocks with markdown
 
-for (let p of document.querySelectorAll('pre'))
+// Convert <pre> blocks with markdown
+for (let p of document.querySelectorAll('pre.markdown'))
 {
+    if (p.id)
+        continue;
     let div = document.createElement("div");
     div.innerHTML = marked.parse(p.innerText);
     p.replaceWith(div);
 }
+
+
+// Show the code for a sample <div>
+function showCode(event)
+{
+    // Get code lines
+    let code = event.target.parentNode.innerHTML;
+    code = code.replace('<button class="show-code-button"></button>', "");
+    let codeLines = code.split('\n');
+
+    // Remove lines that are completely blank
+    //codeLines = codeLines.map(x => x.replace(/^[ \t]*$/, ''));
+
+    while (codeLines[0] == '')
+        codeLines.shift()
+    while (codeLines[codeLines.length - 1] == '')
+        codeLines.pop();
+
+    // Remove leading whitespace
+    let leadingWhitespace = codeLines[0].match(/^[ \t]*/)[0];
+    codeLines = codeLines.map(x => {
+        if (x.startsWith(leadingWhitespace))
+            return x.substring(leadingWhitespace.length);
+        else
+            return x;
+    });
+    code = codeLines.join('\n');
+
+    code = code.replace(/<(.*?)>/g, function(o, i, x) {
+
+        if (o.startsWith('<!--') && o.endsWith('-->'))
+            return `&lt;<span class='comment'>${i}</span>&gt;`;
+
+
+        // Highlight the tag
+        i = i.replace(/^(\/)?([a-zA-Z0-9]+)( .*)?/, function(o, m1, m2, m3) {
+            if (m3)
+            {
+                m3 = m3.replace(/(.*?)=\'(.*?)\'/g, function(o, m1, m2) {
+                    return `<span class='attr'>${m1}</span>='<span class='value'>${m2}</span>'`
+                });
+                m3 = m3.replace(/(.*?)=\"(.*?)\"/g, function(o, m1, m2) {
+                    return `<span class='attr'>${m1}</span>="<span class='value'>${m2}</span>"`
+                });
+            }
+            else
+                m3 = '';
+            return `${m1??""}<span class='tag'>${m2}</span>${m3}`;
+        });
+    
+    
+        return `&lt;${i}&gt;`
+    });
+
+        
+
+    document.getElementById('code').innerHTML = code;
+    document.getElementById("viewCodeDialog").showModal();
+}
+
+for (let s of document.querySelectorAll('div.sample'))
+{
+    let button = document.createElement("button");
+    button.classList.add("show-code-button");
+    s.appendChild(button);
+    button.addEventListener('click', showCode);
+}
+
+document.getElementById("copy").addEventListener('click', function(ev){
+
+    let code = document.getElementById('code').innerText;
+
+    if (navigator.clipboard) {
+        navigator.clipboard.writeText(code);
+    }
+
+    ev.preventDefault();
+
+})
+
 
 </script>
 </body>

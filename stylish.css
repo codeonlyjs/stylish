@@ -560,8 +560,16 @@ span.pill
     display:inline-block;
     padding: .15rem .65rem;
     border-radius: 1rem;
-    font-size: .75em;
     font-weight: 700;
+
+    &.small
+    {
+        font-size: .75em;
+    }
+    &.large
+    {
+        font-size: 1.25em;
+    }
 }
 
 input[type=date],
