@@ -208,6 +208,7 @@ h6 { font-size: 1rem; }
 .left { text-align: left; }
 .center { text-align: center; }
 .right { text-align: right; }
+.hidden { visibility: hidden; }
 
 a
 {

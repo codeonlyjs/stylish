@@ -1,6 +1,6 @@
 {
   "name": "@toptensoftware/stylish",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "a clean, simple, customizable, theme aware, appearance only stylesheet.",
   "main": "index.js",
   "type": "module",
