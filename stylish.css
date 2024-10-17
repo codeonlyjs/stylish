@@ -238,6 +238,7 @@ a.button,
 input[type=button],
 input[type="file"]::file-selector-button
 {
+    cursor: pointer;
     display:inline-block;
     text-decoration: none;
     background-color: var(--class-back-color);
@@ -341,6 +342,7 @@ input.button[type='checkbox']
         font-size: 1rem;
         line-height: 1rem;
         white-space: nowrap;
+        cursor: pointer;
         transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 
         &:hover
