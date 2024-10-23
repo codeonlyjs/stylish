@@ -229,6 +229,11 @@ a
     }
 }
 
+nav
+{
+    --link-color: var(--body-fore-color);
+}
+
 input, button
 {
     font-family: var(--font-family);
