@@ -1,7 +1,7 @@
 <html>
 <head>
     <link href="./stylish.css" type="text/css" rel="stylesheet" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/14.1.2/marked.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/commonmark@0.31.2/dist/commonmark.min.js"></script>
 	<meta name="viewport" content="initial-scale=1">
     <style>
     :root
@@ -169,15 +169,23 @@ Stylish uses several classes to change the primary color of items:
 </div>
 
 <pre class="markdown">
-## Nav Links
+## Nav Areas
 
-Links in `<nav>` sections use normal body text color instead
-of the in-text highlight color:
+In `nav` sections:
+
+* `a` links use normal body text color instead
+of the in-text highlight color
+* `ul` list items have bullets removed:
+
 </pre>
 
 <div class="sample">
 <nav>
 <a href="#">Apples</a> | <a href="#">Pears</a> | <a href="#">Bananas</a>
+<ul>
+<li>List Item 1</li>
+<li>List Item 2</li>
+</ul>
 </nav>
 </div>
 
@@ -724,7 +732,11 @@ for (let p of document.querySelectorAll('pre.markdown'))
     if (p.id)
         continue;
     let div = document.createElement("div");
-    div.innerHTML = marked.parse(p.innerText);
+    let parser = new commonmark.Parser();
+    let ast = parser.parse(p.innerText);
+    let renderer = new commonmark.HtmlRenderer();
+    let html = renderer.render(ast);
+    div.innerHTML = html;
     p.replaceWith(div);
 }
 
