@@ -529,7 +529,7 @@ input[type="radio"]
 input.switch[type="checkbox"],
 input.theme-switch[type="checkbox"]
 {
-    width:25px;
+    width:30px;
     border-radius:10px;
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23888'/%3e%3c/svg%3e");
     background-position: left center;
