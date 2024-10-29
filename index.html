@@ -1,6 +1,7 @@
 <html>
 <head>
     <link href="./stylish.css" type="text/css" rel="stylesheet" />
+    <script src="./stylish-theme.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/commonmark@0.31.2/dist/commonmark.min.js"></script>
 	<meta name="viewport" content="initial-scale=1">
     <style>
@@ -99,52 +100,40 @@ Stylish supports light and dark themes.  By default the mode is selected
 based on the user's preference, or you can force one or the other by
 adding the `dark` or `light` class to the root `&lt;html&gt;` element 
 of the document.
+
+To simplify user selection of theme, stylish includes a theme switcher
+checkbox (use the class 'theme-switch') and a script file to manage 
+switching themes and saving the user preference.
+
+In the `&lt;head&gt;` section of your page, add a reference to
+`stylish-theme.js`
+
+```
+&lt;script src="./stylish-theme.js"&gt;&lt;/script&gt;
+```
+
+Once the script is loaded, the following API is available:
+
+* `window.stylish.toggleMode` - toggles between dark and light modes
+* `window.stylish.darkMode` - returns `true` if currently in dark mode
+* `window.stylish.setThemeSwitches` - updates the state of all `theme-switch` classed checkboxes
+* `window.stylish.addEventListener('darkModeChanged', (ev) => {ev.darkMode})` - notifies when dark mode changes
+
+Note: the script stores the current selection in local storage with the
+key `stylish-theme`.  When the selected theme matches the browser's user
+preference the selection is saved as "auto".
+
 </pre>
 
 <div class="sample">
-<div class="control-group">
-    <input type="radio" class="button" name="theme" id="theme-auto" checked="" onclick="loadTheme('auto')">
-    <label for="theme-auto">Auto</label>
-
-    <input type="radio" class="button" name="theme" id="theme-dark" onclick="loadTheme('dark')">
-    <label for="theme-dark">Dark</label>
-
-    <input type="radio" class="button" name="theme" id="theme-light" onclick="loadTheme('light')">
-    <label for="theme-light">Light</label>
-</div>
-
-<script>
-function loadTheme(name)
-{
-    let cl = document.documentElement.classList;
-    cl.remove("dark", "light");
-    if (name != 'auto')
-        cl.add(name);
-};
-</script>
-</div>
-
-<div class="sample">
     <div>
-        <label><input class="theme-switch" type="checkbox" title="Dark/Light Mode" onClick="toggleTheme(event)"></label>
+        <input class="theme-switch" type="checkbox" title="Dark/Light Mode" onClick="stylish.toggleTheme()">
     </div>
+    <script>
+    // Initialize switch
+    stylish.setThemeSwitches();
+    </script>
 </div>
-
-<script>
-function toggleTheme(ev)
-{
-    loadTheme(ev.target.checked ? "dark" : "light");
-}
-
-let q = window.matchMedia('(prefers-color-scheme: dark)');
-if (q.matches)
-    document.querySelectorAll(".theme-switch").forEach(x => x.checked = true);
-
-q.addEventListener('change', event => {
-    alert(event.matches ? "dark" : "light");
-});
-
-</script>
 
 
 <pre class="markdown">
