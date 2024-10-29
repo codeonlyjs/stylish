@@ -124,6 +124,28 @@ function loadTheme(name)
 </script>
 </div>
 
+<div class="sample">
+    <div>
+        <label><input class="theme-switch" type="checkbox" title="Dark/Light Mode" onClick="toggleTheme(event)"></label>
+    </div>
+</div>
+
+<script>
+function toggleTheme(ev)
+{
+    loadTheme(ev.target.checked ? "dark" : "light");
+}
+
+let q = window.matchMedia('(prefers-color-scheme: dark)');
+if (q.matches)
+    document.querySelectorAll(".theme-switch").forEach(x => x.checked = true);
+
+q.addEventListener('change', event => {
+    alert(event.matches ? "dark" : "light");
+});
+
+</script>
+
 
 <pre class="markdown">
 ## Colors
