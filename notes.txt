@@ -1,0 +1,12 @@
+    /* Use this to blend accent color into focus color
+        --focus-color: color-mix(in hsl, 
+                hsl(from var(--accent-color) h s l), 
+                hsl(from var(--accent-color) h s var(--fore-color-l)) 100%
+            );
+    */
+    /*
+    --code-color: color-mix(in hsl, 
+            hsl(from var(--accent-color) h s l), 
+            hsl(from var(--accent-color) h s var(--fore-color-l)) 30%
+        );
+        */
