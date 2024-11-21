@@ -2,11 +2,8 @@ import shex from '@toptensoftware/shex'
 
 let $ = shex({ async: true, shell: "bash" });
 
-/*
 if (await $`git diff --exit-code && git diff --cached --exit-code && git push -n`.status != 0)
     throw new Error("Uncommitted or unpushed changes");
-*/
-
 
 // Update version
 await $`npm version patch --no-git-tag-version`
