@@ -1,6 +1,6 @@
 {
   "name": "@toptensoftware/stylish",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "a clean, simple, customizable, theme aware, appearance only stylesheet.",
   "main": "index.js",
   "type": "module",
@@ -19,6 +19,8 @@
     "type": "git",
     "url": "git+https://github.com/toptensoftware/stylish.git"
   },
-  "license": "Apache-2.0"
+  "license": "Apache-2.0",
+  "dependencies": {
+    "@toptensoftware/shex": "github:toptensoftware/shex"
+  }
 }
-
