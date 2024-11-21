@@ -17,10 +17,9 @@ console.log(`Package Version: ${pkg.version}`);
 
 // Tag and commit both repos
 await $`git add .`
-await $`git commit -m "${pkg.version}" --allow-empty`
-await $`git tag -f "${pkg.version}"`
+await $`git commit -m ${pkg.version} --allow-empty`
+await $`git tag -f ${pkg.version}`
 await $`git push --quiet`
 await $`git push -f --tags --quiet`
 
 console.log("Build Completed Successfully");
-
