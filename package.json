@@ -1,8 +1,12 @@
 {
-  "name": "@toptensoftware/stylish",
-  "version": "1.0.11",
+  "name": "@codeonlyjs/stylish",
+  "version": "1.0.12",
   "description": "a clean, simple, customizable, theme aware, appearance only stylesheet.",
   "type": "module",
+  "exports": {
+    ".": "./stylish.js",
+    "./stylish.css": "./stylish.css"
+  },
   "scripts": {
   },
   "author": "Topten Software",
