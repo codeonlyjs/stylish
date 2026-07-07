@@ -12,10 +12,18 @@ class Stylish extends EventTarget
         super();
 
         // Listen for preferred theme changes
-        this.#prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
-        this.#prefersDark.addEventListener('change', event => {
-            this.selectedTheme = A;
-        });
+        if (typeof(window) !== 'undefined')
+        {
+            this.#prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+            this.#prefersDark.addEventListener('change', event => {
+                this.selectedTheme = A;
+            });
+        }
+        else
+        {
+            // Probably running ssr/ssg
+            this.#prefersDark = { matches: false };
+        }
     }
 
     #prefersDark;
@@ -65,11 +73,14 @@ class Stylish extends EventTarget
     // Get the current theme
     get selectedTheme()
     {
-        let cl = document.documentElement.classList;
-        if (cl.contains(D))
-            return D;
-        if (cl.contains(L))
-            return L;
+        if (typeof(document) !== 'undefined')
+        {
+            let cl = document.documentElement.classList;
+            if (cl.contains(D))
+                return D;
+            if (cl.contains(L))
+                return L;
+        }
         return A;
     }
 
