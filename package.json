@@ -1,6 +1,6 @@
 {
   "name": "@codeonlyjs/stylish",
-  "version": "1.0.15",
+  "version": "1.0.16",
   "description": "a clean, simple, customizable, theme aware, appearance only stylesheet.",
   "type": "module",
   "exports": {
@@ -22,6 +22,5 @@
     "url": "git+https://github.com/codeonlyjs/stylish.git"
   },
   "license": "Apache-2.0",
-  "dependencies": {
-  }
+  "dependencies": {}
 }
