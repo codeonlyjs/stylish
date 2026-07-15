@@ -8,6 +8,7 @@
     "./stylish.css": "./stylish.css"
   },
   "scripts": {
+    "bump": "npm version patch && git push --follow-tags"
   },
   "author": "Topten Software",
   "contributors": [
