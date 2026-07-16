@@ -11,6 +11,7 @@
     --dark-link-color: #c193ff;
     --dark-button-color: #444;
     --dark-accent-color: #ae60e8;
+    --dark-subtle-fore-color: #a0a0a0;
     --dark-success-color: #00bc8c;
     --dark-info-color: #3498db;
     --dark-warning-color: #f39c12;
@@ -24,6 +25,7 @@
     --light-link-color: #8f00c9;
     --light-button-color: #444;
     --light-accent-color: #8f00c9;
+    --light-subtle-fore-color: #606060;
     --light-success-color: #18bc9c;
     --light-info-color: #3498db;
     --light-warning-color: #f39c12;
@@ -70,6 +72,7 @@
     --link-color: var(--dark-link-color);
     --button-color: var(--dark-button-color);
     --accent-color: var(--dark-accent-color);
+    --subtle-fore-color: var(--dark-subtle-fore-color);
     --info-color: var(--dark-info-color);
     --warning-color: var(--dark-warning-color);
     --danger-color: var(--dark-danger-color);
@@ -87,6 +90,7 @@
     --link-color: var(--light-link-color);
     --button-color: var(--light-button-color);
     --accent-color: var(--light-accent-color);
+    --subtle-fore-color: var(--light-subtle-fore-color);
     --info-color: var(--light-info-color);
     --warning-color: var(--light-warning-color);
     --danger-color: var(--light-danger-color);
@@ -108,6 +112,7 @@
         --link-color: var(--dark-link-color);
         --button-color: var(--dark-button-color);
         --accent-color: var(--dark-accent-color);
+        --subtle-fore-color: var(--dark-subtle-fore-color);
         --info-color: var(--dark-info-color);
         --warning-color: var(--dark-warning-color);
         --danger-color: var(--dark-danger-color);
@@ -128,6 +133,7 @@
         --link-color: var(--light-link-color);
         --button-color: var(--light-button-color);
         --accent-color: var(--light-accent-color);
+        --subtle-fore-color: var(--light-subtle-fore-color);
         --info-color: var(--dark-info-color);
         --warning-color: var(--dark-warning-color);
         --danger-color: var(--dark-danger-color);
