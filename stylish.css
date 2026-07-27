@@ -781,7 +781,7 @@ input[type=file]::file-selector-button
 
 
 
-dialog
+dialog, .dialog
 {
     all: revert;
     padding: 0;
@@ -844,6 +844,21 @@ dialog
 }
 
 
+[popover], .popover 
+{
+    border-radius: 10px;
+    border-color: var(--accent-color);
+    position: fixed;
+    top: anchor(bottom);
+    left: anchor(left);
+    right: auto;
+    bottom: auto;
+    margin: 3px 0px 3px 0px;
+    position-try-fallbacks: flip-block;
+}
+
+
+
 .grid
 {
     display: grid;
@@ -855,29 +870,29 @@ dialog
     .cell-left { text-align: left; }
     .cell-center { text-align: center; }
 
-    .cell-1-1 { grid-column: 1 / -1; }
-    .cell-1-2 { grid-column: 1 / 7; }
-    .cell-2-2 { grid-column: 7 / -1; }
-    .cell-1-3 { grid-column: 1 / 5; }
-    .cell-2-3 { grid-column: 5 / 9; }
-    .cell-3-3 { grid-column: 9 / -1; }
-    .cell-12-3 { grid-column: 1 / 9; }
-    .cell-23-3 { grid-column: 5 / -1; }
-    .cell-1-4 { grid-column: 1 / 4; }
-    .cell-2-4 { grid-column: 4 / 7; }
-    .cell-3-4 { grid-column: 7 / 10; }
-    .cell-4-4 { grid-column: 10 / -1; }
-    .cell-13-4 { grid-column: 1 / 10; }
-    .cell-23-4 { grid-column: 4 / 10; }
-    .cell-24-4 { grid-column: 4 / -1; }
-    .cell-1-6 { grid-column: 1 / 3; }
-    .cell-2-6 { grid-column: 3 / 5; }
-    .cell-3-6 { grid-column: 5 / 7; }
-    .cell-4-6 { grid-column: 7 / 9; }
-    .cell-5-6 { grid-column: 9 / 11; }
-    .cell-6-6 { grid-column: 11 / -1; }
-    .cell-23-6 { grid-column: 3 / 7; }
-    .cell-45-6 { grid-column: 7 / 11; }
+    .cell-1of1 { grid-column: 1 / -1; }
+    .cell-1of2 { grid-column: 1 / 7; }
+    .cell-2of2 { grid-column: 7 / -1; }
+    .cell-1of3 { grid-column: 1 / 5; }
+    .cell-2of3 { grid-column: 5 / 9; }
+    .cell-3of3 { grid-column: 9 / -1; }
+    .cell-1to2of3 { grid-column: 1 / 9; }
+    .cell-2to3of3 { grid-column: 5 / -1; }
+    .cell-1of4 { grid-column: 1 / 4; }
+    .cell-2of4 { grid-column: 4 / 7; }
+    .cell-3of4 { grid-column: 7 / 10; }
+    .cell-4of4 { grid-column: 10 / -1; }
+    .cell-1to3of4 { grid-column: 1 / 10; }
+    .cell-2to3of4 { grid-column: 4 / 10; }
+    .cell-2to4of4 { grid-column: 4 / -1; }
+    .cell-1of6 { grid-column: 1 / 3; }
+    .cell-2of6 { grid-column: 3 / 5; }
+    .cell-3of6 { grid-column: 5 / 7; }
+    .cell-4of6 { grid-column: 7 / 9; }
+    .cell-5of6 { grid-column: 9 / 11; }
+    .cell-6of6 { grid-column: 11 / -1; }
+    .cell-2to3of6 { grid-column: 3 / 7; }
+    .cell-4to5of6 { grid-column: 7 / 11; }
 }
 
 .cell-x

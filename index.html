@@ -595,10 +595,10 @@ function showTestDialog()
         </header>
         <main style="width: 400px">
         <div class="grid">
-            <label class="cell-1-4 cell-right">Email:</label>
-            <input class="cell-24-4" type="text" autofocus>
-            <label class="cell-1-4 cell-right">Password:</label>
-            <input class="cell-24-4" type="password">
+            <label class="cell-1of4 cell-right">Email:</label>
+            <input class="cell-2to4of4" type="text" autofocus>
+            <label class="cell-1of4 cell-right">Password:</label>
+            <input class="cell-2to4of4" type="password">
         </div>
         </main>
         <footer>
@@ -610,6 +610,22 @@ function showTestDialog()
 </div>
 
 <pre class="markdown">
+## Popovers
+
+</pre>
+
+<div class="sample">
+
+<button class="dropdown" popovertarget="my-popover" style="anchor-name: --my-anchor">Show Popover</button>
+
+<div id="my-popover" popover style="position-anchor: --my-anchor">
+  <div>I'm a popover! Click outside or press Esc to close me.</div>
+</div>
+
+</div>
+
+
+<pre class="markdown">
 ## Grid System
 
 Although Stylish is mostly about visual styling it also includes
@@ -618,67 +634,67 @@ a simple cell-12 system.
 To use the grid system:
 
 1. Use the class `grid` on the container (usually a `&lt;div&gt;`)
-2. On the grid cells assign classes of the form `cell-N-M` where:
+2. On the grid cells assign classes of the form `cell-NofM` where:
     * N is the column number to place the item in.
     * M is number of columns across the horizontal space.
 
 For example:
 
-* `cell-1-1` divides the horizontal space by 1, and uses the first column 
+* `cell-1of1` divides the horizontal space by 1, and uses the first column 
   (ie: full width)
-* `cell-1-2` the first of two columns
-* `cell-2-2` the second of two columns
-* `cell-3-4` the third of four columns
+* `cell-1of2` the first of two columns
+* `cell-2of2` the second of two columns
+* `cell-3of4` the third of four columns
 * etc...
 
-To span multiple columns, use two digits for `N` where the first is the
-first column number and the second is the last column number.  (eg:
-`cell-24-4` is columns 2,3 and 4 of a 4 column split).
+To span multiple columns, use `AtoB` `N` where the A is the
+first column number and B is the last column number.  (eg:
+`cell-2to4of4` is columns 2,3,4 of a 4 column split).
 </pre>
 
 <div class="sample">
 <div class="grid demo" style="margin: 0 50px">
-    <div class="cell-1-1">1-1</div>
+    <div class="cell-1of1">1of1</div>
 
-    <div class="cell-1-2">1-2</div>
-    <div class="cell-2-2">2-2</div>
+    <div class="cell-1of2">1of2</div>
+    <div class="cell-2of2">2of2</div>
 
-    <div class="cell-1-3">1-3</div>
-    <div class="cell-2-3">2-3</div>
-    <div class="cell-3-3">3-3</div>
+    <div class="cell-1of3">1of3</div>
+    <div class="cell-2of3">2of3</div>
+    <div class="cell-3of3">3of3</div>
 
-    <div class="cell-1-3">1-3</div>
-    <div class="cell-23-3">23-3</div>
+    <div class="cell-1of3">1of3</div>
+    <div class="cell-2to3of3">2to3of3</div>
 
-    <div class="cell-12-3">12-3</div>
-    <div class="cell-3-3">3-3</div>
+    <div class="cell-1to2of3">1to2of3</div>
+    <div class="cell-3of3">3of3</div>
 
-    <div class="cell-1-4">1-4</div>
-    <div class="cell-2-4">2-4</div>
-    <div class="cell-3-4">3-4</div>
-    <div class="cell-4-4">4-4</div>
+    <div class="cell-1of4">1of4</div>
+    <div class="cell-2of4">2of4</div>
+    <div class="cell-3of4">3of4</div>
+    <div class="cell-4of4">4of4</div>
 
-    <div class="cell-1-4">1-4</div>
-    <div class="cell-23-4">23-4</div>
-    <div class="cell-4-4">4-4</div>
+    <div class="cell-1of4">1of4</div>
+    <div class="cell-2to3of4">2to3of4</div>
+    <div class="cell-4of4">4of4</div>
 
-    <div class="cell-1-4">1-4</div>
-    <div class="cell-24-4">24-4</div>
+    <div class="cell-1of4">1of4</div>
+    <div class="cell-2to4of4">2to4of4</div>
 
-    <div class="cell-13-4">13-4</div>
-    <div class="cell-4-4">4-4</div>
+    <div class="cell-1to3of4">1to3of4</div>
+    <div class="cell-4of4">4of4</div>
 
-    <div class="cell-1-6">1-6</div>
-    <div class="cell-2-6">2-6</div>
-    <div class="cell-3-6">3-6</div>
-    <div class="cell-4-6">4-6</div>
-    <div class="cell-5-6">5-6</div>
-    <div class="cell-6-6">6-6</div>
+    <div class="cell-1of6">1of6</div>
+    <div class="cell-2of6">2of6</div>
+    <div class="cell-3of6">3of6</div>
+    <div class="cell-4of6">4of6</div>
+    <div class="cell-5of6">5of6</div>
+    <div class="cell-6of6">6of6</div>
 
-    <div class="cell-1-6">1-6</div>
-    <div class="cell-23-6">23-6</div>
-    <div class="cell-45-6">45-6</div>
-    <div class="cell-6-6">6-6</div>
+    <div class="cell-1of6">1of6</div>
+    <div class="cell-2to3of6">2to3of6</div>
+    <div class="cell-4to5of6">4to5of6</div>
+    <div class="cell-6of6">6of6</div>
 </div>
 </div>
 
