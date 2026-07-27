@@ -1,6 +1,6 @@
 {
   "name": "@codeonlyjs/stylish",
-  "version": "1.0.18",
+  "version": "1.0.19",
   "description": "a clean, simple, customizable, theme aware, appearance only stylesheet.",
   "type": "module",
   "exports": {
