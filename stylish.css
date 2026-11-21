@@ -47,7 +47,7 @@
     --class-back-color: var(--button-color); 
     --class-fore-color: var(--contrast-color); 
     --class-accent-color: var(--accent-color);
-    --focus-color: rgb(from var(--fore-color) r g b / 30%);
+    --focus-color: rgb(from var(--fore-color) r g b / 60%);
     --code-color: rgb(from var(--body-fore-color) r g b / 70%);
     --gridline-color: rgb(from var(--body-fore-color) r g b / 20%);
     --disabled-color: color-mix(in srgb, #808080, var(--back-color) 30%);
@@ -159,7 +159,7 @@ svg
     --class-back-color: var(--accent-color); 
     --class-fore-color: var(--contrast-color); 
     --class-accent-color: var(--accent-color); 
-    --focus-color: rgb(from var(--accent-color) r g b / 50%);
+    --focus-color: rgb(from var(--accent-color) r g b / 70%);
 }
 .success 
 { 
@@ -167,7 +167,7 @@ svg
     --class-back-color: var(--success-color); 
     --class-fore-color: var(--contrast-color); 
     --class-accent-color: var(--success-color); 
-    --focus-color: rgb(from var(--success-color) r g b / 50%);
+    --focus-color: rgb(from var(--success-color) r g b / 70%);
 }
 .info 
 { 
@@ -175,7 +175,7 @@ svg
     --class-back-color: var(--info-color); 
     --class-fore-color: var(--contrast-color); 
     --class-accent-color: var(--info-color); 
-    --focus-color: rgb(from var(--info-color) r g b / 50%);
+    --focus-color: rgb(from var(--info-color) r g b / 70%);
 }
 .warning 
 { 
@@ -183,7 +183,7 @@ svg
     --class-back-color: var(--warning-color); 
     --class-fore-color: var(--contrast-color); 
     --class-accent-color: var(--warning-color); 
-    --focus-color: rgb(from var(--warning-color) r g b / 50%);
+    --focus-color: rgb(from var(--warning-color) r g b / 70%);
 }
 .danger 
 { 
@@ -191,7 +191,7 @@ svg
     --class-back-color: var(--danger-color); 
     --class-fore-color: var(--contrast-color); 
     --class-accent-color: var(--danger-color); 
-    --focus-color: rgb(from var(--danger-color) r g b / 50%);
+    --focus-color: rgb(from var(--danger-color) r g b / 70%);
 }
 
 p, span, h1, h2, h3, h4, h5, h6
@@ -293,7 +293,7 @@ input[type="file"]::file-selector-button
     font-size: 1rem;
     line-height: 1rem;
     white-space: nowrap;
-    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, opacity 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, opacity 0.15s ease-in-out;
 
     &:hover:not(:disabled)
     {
@@ -306,10 +306,12 @@ input[type="file"]::file-selector-button
         background-color: rgb(from var(--class-back-color) r g b / 60%);
     }    
 
+    /* Thin ring drawn inside the button in its text color so it
+       doesn't spill into surrounding layout (eg: toolbars, nav bars) */
     &:focus-visible
     {
-        outline: none;
-        box-shadow: 0 0 0 0.20rem var(--focus-color);
+        outline: 2px solid color-mix(in srgb, currentColor 70%, transparent);
+        outline-offset: -3px;
     }
 
     &:disabled
@@ -405,7 +407,7 @@ input.button[type='checkbox']
         line-height: 1rem;
         white-space: nowrap;
         cursor: pointer;
-        transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+        transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out;
 
         &:hover
         {
@@ -461,8 +463,8 @@ input.button[type='checkbox']
     {
         & + label
         {
-            outline: none;
-            box-shadow: 0 0 0 0.20rem var(--focus-color);
+            outline: 2px solid color-mix(in srgb, currentColor 70%, transparent);
+            outline-offset: -3px;
         }
     }
 }
@@ -504,8 +506,8 @@ input[type="radio"]
 
     &:focus-visible
     {
-        outline: none;
-        box-shadow: 0 0 0 0.20rem var(--focus-color);
+        outline: 2px solid var(--focus-color);
+        outline-offset: 1px;
     }
 
     &:disabled
@@ -687,7 +689,7 @@ select
     line-height: 1rem;
     outline: none;
     padding: .475rem .65rem;
-    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
 
 
     &::selection 
@@ -696,10 +698,12 @@ select
         color: var(--class-fore-color);
     }
       
+    /* Caret shows focus for text fields; border color change
+       covers select/file inputs which have no caret */
     &:focus-visible:not(:disabled)
     {
         outline: none;
-        box-shadow: 0 0 0 0.20rem var(--focus-color);
+        border-color: var(--class-accent-color);
     }
 
     &::placeholder
@@ -732,11 +736,16 @@ input[type=file]::file-selector-button
 {
     position: relative;
     display: inline-flex;
-    align-items: baseline;
+    /* Stretch so all items match the tallest.  Text inputs can't be
+       shorter than the font's "normal" line-height (browsers ignore the
+       1rem line-height) so they end up a few pixels taller than spans */
+    align-items: stretch;
     line-height: 1rem;
 
     span
     {
+        display: flex;
+        align-items: center;
         border-radius: 5px;
         padding: calc(.475rem + 1px) calc(.65rem + 1px);
         z-index: -1;
