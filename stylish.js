@@ -16,7 +16,10 @@ class Stylish extends EventTarget
         {
             this.#prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
             this.#prefersDark.addEventListener('change', event => {
-                this.selectedTheme = A;
+                // #prefersDark.matches already holds the new value here, so work
+                // out the old dark mode from the event, or no change would be seen
+                let wasDarkMode = this.selectedTheme == A ? !event.matches : this.darkMode;
+                this.#setTheme(A, wasDarkMode);
             });
         }
         else
@@ -31,9 +34,12 @@ class Stylish extends EventTarget
     // Set the current theme
     set selectedTheme(name)
     {
-        // Detect change
-        let wasDarkMode = this.darkMode;
+        this.#setTheme(name, this.darkMode);
+    }
 
+    // Applies a theme; fires darkModeChanged if dark mode differs from wasDarkMode
+    #setTheme(name, wasDarkMode)
+    {
         // Update classes
         let cl = document.documentElement.classList;
         cl.remove(D, L);
